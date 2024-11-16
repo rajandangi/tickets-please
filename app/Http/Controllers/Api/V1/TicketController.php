@@ -6,18 +6,20 @@ use App\Models\Ticket;
 use App\Http\Requests\Api\V1\StoreTicketRequest;
 use App\Http\Requests\Api\V1\UpdateTicketRequest;
 use App\Http\Resources\V1\TicketResource;
+use App\Http\Filters\V1\TicketFilter;
 
 class TicketController extends ApiController
 {
     /**
      * Display a listing of the resource.
+     *
+     * @param TicketFilter $filters The filters to apply to the query.
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index()
+    public function index(TicketFilter $filters)
     {
-        if ($this->include('user')) {
-            return TicketResource::collection(Ticket::with('user')->paginate());
-        }
-        return TicketResource::collection(Ticket::paginate());
+        // Uses local scope to apply filters
+        return TicketResource::collection(Ticket::filter($filters)->paginate());
     }
 
     /**

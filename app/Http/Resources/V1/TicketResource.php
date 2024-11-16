@@ -26,8 +26,8 @@ class TicketResource extends JsonResource
                     $this->description
                 ),
                 'status' => $this->status,
-                'created_at' => $this->created_at,
-                'updated_at' => $this->updated_at,
+                'createdAt' => $this->created_at,
+                'updatedAt' => $this->updated_at,
             ],
             'relationships' => [
                 'author' => [
@@ -40,7 +40,7 @@ class TicketResource extends JsonResource
                     ]
                 ]
             ],
-            'includes' =>  new UserResource($this->whenLoaded('user')),
+            'includes' =>  new UserResource($this->whenLoaded('author')),
             'links' => [
                 'self' => route('tickets.show', ['ticket' => $this->id])
             ]

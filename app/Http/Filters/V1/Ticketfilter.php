@@ -4,6 +4,13 @@ namespace App\Http\Filters\V1;
 
 class TicketFilter extends QueryFilter
 {
+    protected $sortable = [
+        'id',
+        'title',
+        'status',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at'
+    ];
     /**
      * Filter the query by the created_at date.
      *

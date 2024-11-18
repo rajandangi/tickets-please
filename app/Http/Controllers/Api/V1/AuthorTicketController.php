@@ -83,7 +83,7 @@ class AuthorTicketController extends ApiController
 
             $ticket->update($request->mappedAttributes());
 
-            return new TicketResource($ticket);
+        return new TicketResource($ticket);
         } catch (ModelNotFoundException $exception) {
             return $this->error('Ticket not found', 404);
         }

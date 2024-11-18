@@ -13,7 +13,9 @@ class Ticket extends Model
     /** @use HasFactory<\Database\Factories\TicketFactory> */
     use HasFactory;
 
-    /**
+    protected $fillable = ['title', 'description', 'status', 'user_id'];
+
+    /*
      * Returns the user that owns the ticket.
      */
     public function author(): BelongsTo

@@ -11,8 +11,9 @@ final class Abilities
     public const ReplaceTicket = 'ticket:replace';
     public const DeleteTicket = 'ticket:detele';
 
+    public const CreateOwnTicket = 'ticket:own:create';
     public const UpdateOwnTicket = 'ticket:own:update';
-    public const DeleteOwnTicket = 'ticket:own:create';
+    public const DeleteOwnTicket = 'ticket:own:detele';
 
     public const CreateUser = 'user:create';
     public const UpdateUser = 'user:update';
@@ -21,6 +22,7 @@ final class Abilities
 
     public static function getAbilities(User $user): array
     {
+        // Never use * in permissions
         if ($user->is_manager) {
             return [
                 self::CreateTicket,
@@ -34,7 +36,7 @@ final class Abilities
             ];
         } else {
             return [
-                self::CreateTicket,
+                self::CreateOwnTicket,
                 self::UpdateOwnTicket,
                 self::DeleteOwnTicket
             ];

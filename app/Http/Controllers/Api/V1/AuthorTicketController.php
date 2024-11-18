@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\Controller;
 use App\Http\Filters\V1\TicketFilter;
 use App\Http\Requests\Api\V1\StoreTicketRequest;
+use App\Http\Requests\Api\V1\ReplaceTicketRequest;
 use App\Http\Resources\V1\TicketResource;
 use App\Models\Ticket;
 use App\Models\User;
@@ -38,16 +38,76 @@ class AuthorTicketController extends ApiController
         try {
             User::findOrFail($author_id);
         } catch (ModelNotFoundException $exception) {
-            return $this->error('User not found', 422);
+            return $this->error('User not found', 404);
         }
 
-        $model = [
-            'title' => $request->input('data.attributes.title'),
-            'description' => $request->input('data.attributes.description'),
-            'status' => $request->input('data.attributes.status'),
-            'user_id' => $author_id,
-        ];
+        return new TicketResource(Ticket::create($request->mappedAttributes()));
+    }
 
-        return new TicketResource(Ticket::create($model));
+    /**
+     * Remove the specified resource from storage.
+     * Method: DELETE
+     * URI: /api/v1/authors/{author_id}/tickets/{ticket_id}
+     */
+    public function destroy($author_id, $ticket_id)
+    {
+        try {
+            $ticket = Ticket::findOrFail($ticket_id);
+
+            if ($ticket->user_id != $author_id) {
+                return $this->error('Ticket does not belong to author', 403);
+            }
+
+            $ticket->delete();
+
+            return $this->ok('Ticket deleted successfully');
+        } catch (ModelNotFoundException $exception) {
+            return $this->error('Ticket not found', 404);
+        }
+    }
+
+
+    /**
+     * Replace the specified resource in storage.
+     * Method: PUT
+     * URI: /api/v1/authors/{author_id}/tickets/{ticket_id}
+     */
+    public function replace(ReplaceTicketRequest $request, $author_id, $ticket_id)
+    {
+        try {
+            $ticket = Ticket::findOrFail($ticket_id);
+
+            if ($ticket->user_id != $author_id) {
+                return $this->error('Ticket does not belong to author', 403);
+            }
+
+            $ticket->update($request->mappedAttributes());
+
+            return new TicketResource($ticket);
+        } catch (ModelNotFoundException $exception) {
+            return $this->error('Ticket not found', 404);
+        }
+    }
+
+     /**
+     * Update the specified resource in storage.
+     * Method: PATCH
+     * URI: /api/v1/authors/{author_id}/tickets/{ticket_id}
+     */
+    public function update(ReplaceTicketRequest $request, $author_id, $ticket_id)
+    {
+        try {
+            $ticket = Ticket::findOrFail($ticket_id);
+
+            if ($ticket->user_id != $author_id) {
+                return $this->error('Ticket does not belong to author', 403);
+            }
+
+            $ticket->update($request->mappedAttributes());
+
+            return new TicketResource($ticket);
+        } catch (ModelNotFoundException $exception) {
+            return $this->error('Ticket not found', 404);
+        }
     }
 }

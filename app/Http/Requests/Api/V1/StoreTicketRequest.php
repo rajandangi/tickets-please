@@ -2,9 +2,8 @@
 
 namespace App\Http\Requests\Api\V1;
 
-use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTicketRequest extends FormRequest
+class StoreTicketRequest extends BaseTicketRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,15 +31,5 @@ class StoreTicketRequest extends FormRequest
         }
 
         return $rules;
-    }
-
-    /**
-     * Public method for custom validation messages
-     */
-    public function messages(): array
-    {
-        return [
-            'data.attributes.status.in' => 'The status must be one of: A, C, H, X'
-        ];
     }
 }

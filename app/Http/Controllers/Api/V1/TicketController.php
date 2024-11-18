@@ -34,7 +34,14 @@ class TicketController extends ApiController
      */
     public function store(StoreTicketRequest $request)
     {
-        return new TicketResource(Ticket::create($request->mappedAttributes()));
+        try {
+            // Policy
+            Gate::authorize('create', Ticket::class);
+
+            return new TicketResource(Ticket::create($request->mappedAttributes()));
+        } catch (AuthorizationException $ex) {
+            return $this->error('You are not authorized to create a ticket', 401);
+        }
     }
 
     /**
@@ -66,7 +73,7 @@ class TicketController extends ApiController
             return new TicketResource($ticket);
         } catch (ModelNotFoundException $exception) {
             return $this->error('Ticket not found', 404);
-        }catch(AuthorizationException $ex){
+        } catch (AuthorizationException $ex) {
             return $this->error('You are not authorized to update this ticket', 401);
         }
     }
@@ -81,11 +88,16 @@ class TicketController extends ApiController
         try {
             $ticket = Ticket::findOrFail($ticket_id);
 
+            // Policy
+            Gate::authorize('replace', $ticket);
+
             $ticket->update($request->mappedAttributes());
 
             return new TicketResource($ticket);
         } catch (ModelNotFoundException $exception) {
             return $this->error('Ticket not found', 404);
+        } catch (AuthorizationException $ex) {
+            return $this->error('You are not authorized to replace this ticket', 401);
         }
     }
 
@@ -96,10 +108,16 @@ class TicketController extends ApiController
     {
         try {
             $ticket = Ticket::findOrFail($ticket_id);
+
+            // Policy
+            Gate::authorize('delete', $ticket);
+
             $ticket->delete();
             return $this->ok('Ticket deleted successfully');
         } catch (ModelNotFoundException $exception) {
             return $this->error('Ticket not found', 404);
+        } catch (AuthorizationException $ex) {
+            return $this->error('You are not authorized to delete this ticket', 401);
         }
     }
 }

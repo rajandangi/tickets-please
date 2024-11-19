@@ -2,7 +2,8 @@
 
 namespace App\Http\Requests\Api\V1;
 
-class UpdateUserRequest extends BaseUserRequest
+
+class ReplaceUserRequest extends BaseUserRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,11 +20,13 @@ class UpdateUserRequest extends BaseUserRequest
      */
     public function rules(): array
     {
-        return [
-            'data.attributes.name' => 'sometimes|string',
-            'data.attributes.email' => 'sometimes|email|unique:users,email',
-            'data.attributes.isManager' => 'sometimes|boolean',
-            'data.attributes.password' => 'sometimes|string|min:8',
+        $rules = [
+            'data.attributes.name' => 'required|string',
+            'data.attributes.email' => 'required|email|unique:users,email',
+            'data.attributes.isManager' => 'required|boolean',
+            'data.attributes.password' => 'required|string|min:8',
         ];
+
+        return $rules;
     }
 }

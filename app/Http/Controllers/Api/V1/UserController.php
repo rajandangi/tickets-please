@@ -9,7 +9,6 @@ use App\Http\Requests\Api\V1\UpdateUserRequest;
 use App\Http\Resources\V1\UserResource;
 use App\Models\User;
 use App\Policies\V1\UserPolicy;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Gate;
 
@@ -34,13 +33,11 @@ class UserController extends ApiController
      */
     public function store(StoreUserRequest $request)
     {
-        try {
-            Gate::authorize('create', User::class);
-
-            return new UserResource(User::create($request->mappedAttributes()));
-        } catch (AuthorizationException $ex) {
-            return $this->error('You are not authorized to create a user', 401);
+        if (Gate::denies('create', User::class)) {
+            return $this->error('You are not authorized to create a user', 403);
         }
+
+        return new UserResource(User::create($request->mappedAttributes()));
     }
 
     /**
@@ -68,15 +65,14 @@ class UserController extends ApiController
             $user = User::findOrFail($user_id);
 
             // Policy
-            Gate::authorize('update', $user);
+            if (Gate::allows('update', $user)) {
+                $user->update($request->mappedAttributes());
+                return new UserResource($user);
+            }
 
-            $user->update($request->mappedAttributes());
-
-            return new UserResource($user);
+            return $this->error('You are not authorized to update this user', 403);
         } catch (ModelNotFoundException $ex) {
             return $this->error('User not found', 404);
-        } catch (AuthorizationException $ex) {
-            return $this->error('You are not authorized to update this user', 401);
         }
     }
 
@@ -91,15 +87,14 @@ class UserController extends ApiController
             $user = User::findOrFail($user_id);
 
             // Policy
-            Gate::authorize('replace', $user);
+            if (Gate::allows('replace', $user)) {
+                $user->update($request->mappedAttributes());
+                return new UserResource($user);
+            }
 
-            $user->update($request->mappedAttributes());
-
-            return new UserResource($user);
+            return $this->error('You are not authorized to replace this user', 403);
         } catch (ModelNotFoundException $ex) {
             return $this->error('User not found', 404);
-        } catch (AuthorizationException $ex) {
-            return $this->error('You are not authorized to update this user', 401);
         }
     }
 
@@ -118,15 +113,14 @@ class UserController extends ApiController
             }
 
             // Policy
-            Gate::authorize('delete', $user);
+            if (Gate::allows('delete', $user)) {
+                $user->delete();
+                return $this->success('User deleted successfully');
+            }
 
-            $user->delete();
-
-            return $this->success('User deleted successfully');
+            return $this->error('You are not authorized to delete this user', 403);
         } catch (ModelNotFoundException $ex) {
             return $this->error('User not found', 404);
-        } catch (AuthorizationException $ex) {
-            return $this->error('You are not authorized to delete this user', 401);
         }
     }
 }

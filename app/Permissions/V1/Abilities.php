@@ -9,11 +9,11 @@ final class Abilities
     public const CreateTicket = 'ticket:create';
     public const UpdateTicket = 'ticket:update';
     public const ReplaceTicket = 'ticket:replace';
-    public const DeleteTicket = 'ticket:detele';
+    public const DeleteTicket = 'ticket:delete';
 
     public const CreateOwnTicket = 'ticket:own:create';
     public const UpdateOwnTicket = 'ticket:own:update';
-    public const DeleteOwnTicket = 'ticket:own:detele';
+    public const DeleteOwnTicket = 'ticket:own:delete';
 
     public const CreateUser = 'user:create';
     public const UpdateUser = 'user:update';

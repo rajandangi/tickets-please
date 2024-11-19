@@ -16,23 +16,23 @@ class BaseTicketRequest extends FormRequest
      *
      * @return array An associative array of model attributes to update.
      */
-    public function mappedAttributes(): array
+    public function mappedAttributes(array $otherAttributes = []): array
     {
         // 'request_key' => 'model_key'
-        $attributeMap =[
+        $attributeMap = array_merge([
             'data.attributes.title' => 'title',
             'data.attributes.description' => 'description',
             'data.attributes.status' => 'status',
             'data.attributes.createdAt' => 'created_at',
             'data.attributes.updatedAt' => 'updated_at',
             'data.relationships.author.data.id' => 'user_id',
-        ];
+        ], $otherAttributes);
 
         $attributesToUpdate = [];
-        foreach($attributeMap as $requestKey => $ModelKey) {
+        foreach ($attributeMap as $requestKey => $ModelKey) {
 
             // Check if intended key exists in the request
-            if($this->has($requestKey)) {
+            if ($this->has($requestKey)) {
                 // Add input Value of the key to the attributesToUpdate array
                 $attributesToUpdate[$ModelKey] = $this->input($requestKey);
             }

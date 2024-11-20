@@ -1,17 +1,6 @@
 ## Tickets Please
 Welcome to Tickets Please! This is a simple ticketing system API built with Laravel, designed to help you master best practices in API development. It comes packed with features like user management, ticket authorization, error handling, and comprehensive API documentation.
 
-## Postman Collection
-Check out our [Postman Collection](https://www.postman.com/rajandangi/tickets-please) to quickly get started with the API.
-![Postman Collection](/public/docs/images/postmancollection.png)
-
-## Resources
-Here are some great resources to help you along the way:
-- [A Specification for building APIs in JSON](https://jsonapi.org/)
-- [Eloquent: API Resources](https://laravel.com/docs/11.x/eloquent-resources)
-- [Laravel Sanctum](https://laravel.com/docs/11.x/sanctum)
-- [Scribe API Documentation Generator](https://scribe.knuckles.wtf/)
-
 ## Best Practices Implemented
 - API URL Design
 - Setting up Versioning in API URLs
@@ -26,6 +15,18 @@ Here are some great resources to help you along the way:
 - Principle of least privilege on validation rules
 - Uniform error handling
 - API documentation
+
+
+## Postman Collection
+Check out our [Postman Collection](https://www.postman.com/rajandangi/tickets-please) to quickly get started with the API.
+![Postman Collection](/public/docs/images/postmancollection.png)
+
+## Resources
+Here are some great resources to help you along the way:
+- [A Specification for building APIs in JSON](https://jsonapi.org/)
+- [Eloquent: API Resources](https://laravel.com/docs/11.x/eloquent-resources)
+- [Laravel Sanctum](https://laravel.com/docs/11.x/sanctum)
+- [Scribe API Documentation Generator](https://scribe.knuckles.wtf/)
 
 
 ## Installation

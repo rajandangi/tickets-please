@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Api\V1;
 
+use App\Models\User;
 use App\Permissions\V1\Abilities;
 
 class StoreTicketRequest extends BaseTicketRequest
@@ -21,16 +22,16 @@ class StoreTicketRequest extends BaseTicketRequest
      */
     public function rules(): array
     {
-        $authorIdAttr = $this->routeIs('tickets.store') ? 'data.relationships.author.data.id' : 'author';
-
+        $authorIdAttr = 'data.relationships.author.data.id';
         $authorRule = 'required|integer|exists:users,id';
+
         $user = $this->user();
 
         $rules = [
             'data.attributes.title' => 'required|string',
             'data.attributes.description' => 'required|string',
             'data.attributes.status' => 'required|string|in:A,C,H,X',
-            $authorIdAttr => $authorRule .'|size:'. $user->id
+            $authorIdAttr => $authorRule . '|size:' . $user->id
         ];
 
 
@@ -47,8 +48,17 @@ class StoreTicketRequest extends BaseTicketRequest
     protected function prepareForValidation(): void
     {
         if ($this->routeIs('authors.tickets.store')) {
+            $author = $this->route('author');
+            $author_id = $author instanceof User ? $author->id : $author;
+
             $this->merge([
-                'author' => $this->route('author') // Get Author passed as url parameter
+                'data' => array_merge($this->data ?? [], [
+                    'relationships' => [
+                        'author' => [
+                            'data' => ['id' => (int) $author_id]
+                        ]
+                    ]
+                ])
             ]);
         }
     }

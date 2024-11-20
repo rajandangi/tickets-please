@@ -8,13 +8,15 @@ use App\Http\Requests\Api\V1\ReplaceTicketRequest;
 use App\Http\Requests\Api\V1\UpdateTicketRequest;
 use App\Http\Resources\V1\TicketResource;
 use App\Models\Ticket;
+use App\Models\User;
 use App\Policies\V1\TicketPolicy;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class AuthorTicketController extends ApiController
 {
     protected $policyClass = TicketPolicy::class;
+
     /**
      * Display a paginated listing of the tickets for a specific author.
      * Method: GET
@@ -36,17 +38,15 @@ class AuthorTicketController extends ApiController
      * Method: POST
      * URI: /api/v1/authors/{author_id}/tickets
      */
-    public function store(StoreTicketRequest $request, $author_id,)
+    public function store(StoreTicketRequest $request, User $author)
     {
         // Policy
         if (Gate::denies('create', Ticket::class)) {
-            return $this->error('You are not authorized to create a ticket', 403);
+            throw new AccessDeniedHttpException('You are not authorized to create this resource');
         }
 
         // Create a new ticket
-        return new TicketResource(Ticket::create($request->mappedAttributes([
-            'author' => 'user_id'
-        ])));
+        return new TicketResource(Ticket::create($request->mappedAttributes()));
     }
 
     /**
@@ -54,24 +54,15 @@ class AuthorTicketController extends ApiController
      * Method: DELETE
      * URI: /api/v1/authors/{author_id}/tickets/{ticket_id}
      */
-    public function destroy($author_id, $ticket_id)
+    public function destroy(User $author, Ticket $ticket)
     {
-        try {
-            $ticket = Ticket::where('id', $ticket_id)
-                ->where('user_id', $author_id)
-                ->firstOrFail();
-
-            //Policy
-            if(Gate::denies('delete', $ticket)) {
-                return $this->error('You are not authorized to delete this ticket', 403);
-            }
-
-            $ticket->delete();
-
-            return $this->ok('Ticket deleted successfully');
-        } catch (ModelNotFoundException $exception) {
-            return $this->error('Ticket not found', 404);
+        // Policy
+        if (Gate::denies('delete', $ticket)) {
+            throw new AccessDeniedHttpException('You are not authorized to delete this resource');
         }
+
+        $ticket->delete();
+        return $this->ok('Ticket deleted successfully');
     }
 
 
@@ -80,24 +71,13 @@ class AuthorTicketController extends ApiController
      * Method: PUT
      * URI: /api/v1/authors/{author_id}/tickets/{ticket_id}
      */
-    public function replace(ReplaceTicketRequest $request, $author_id, $ticket_id)
+    public function replace(ReplaceTicketRequest $request, User $author, Ticket $ticket)
     {
-        try {
-            $ticket = Ticket::where('id', $ticket_id)
-                ->where('user_id', $author_id)
-                ->firstOrFail();
-
-            // Policy
-            if(Gate::denies('replace', $ticket)) {
-                return $this->error('You are not authorized to replace this ticket', 403);
-            }
-
+        if (Gate::allows('replace', $ticket)) {
             $ticket->update($request->mappedAttributes());
-
             return new TicketResource($ticket);
-        } catch (ModelNotFoundException $exception) {
-            return $this->error('Ticket not found', 404);
         }
+        throw new AccessDeniedHttpException('You are not authorized to replace this resource');
     }
 
     /**
@@ -105,23 +85,12 @@ class AuthorTicketController extends ApiController
      * Method: PATCH
      * URI: /api/v1/authors/{author_id}/tickets/{ticket_id}
      */
-    public function update(UpdateTicketRequest $request, $author_id, $ticket_id)
+    public function update(UpdateTicketRequest $request, User $author, Ticket $ticket)
     {
-        try {
-            $ticket = Ticket::where('id', $ticket_id)
-                ->where('user_id', $author_id)
-                ->firstOrFail();
-
-
-            // Policy
-            if(Gate::allows('update', $ticket)) {
-                $ticket->update($request->mappedAttributes());
-                return new TicketResource($ticket);
-            }
-
-            return $this->error('You are not authorized to update this ticket', 403);
-        } catch (ModelNotFoundException $exception) {
-            return $this->error('Ticket not found', 404);
+        if (Gate::allows('update', $ticket)) {
+            $ticket->update($request->mappedAttributes());
+            return new TicketResource($ticket);
         }
+        throw new AccessDeniedHttpException('You are not authorized to update this resource');
     }
 }

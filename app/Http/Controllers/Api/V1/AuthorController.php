@@ -29,6 +29,8 @@ class AuthorController extends ApiController
 
     /**
      * Display the specified resource.
+     * Method: GET
+     * URI: /api/v1/authors/{author_id}
      */
     public function show(User $author)
     {

@@ -9,8 +9,8 @@ use App\Http\Requests\Api\V1\UpdateUserRequest;
 use App\Http\Resources\V1\UserResource;
 use App\Models\User;
 use App\Policies\V1\UserPolicy;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class UserController extends ApiController
 {
@@ -34,7 +34,7 @@ class UserController extends ApiController
     public function store(StoreUserRequest $request)
     {
         if (Gate::denies('create', User::class)) {
-            return $this->error('You are not authorized to create a user', 403);
+            throw new AccessDeniedHttpException('You are not authorized to create this resource');
         }
 
         return new UserResource(User::create($request->mappedAttributes()));
@@ -59,21 +59,15 @@ class UserController extends ApiController
      * Method: PATCH
      * URI: /api/v1/users/{user_id}
      */
-    public function update(UpdateUserRequest $request, $user_id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        try {
-            $user = User::findOrFail($user_id);
-
-            // Policy
-            if (Gate::allows('update', $user)) {
-                $user->update($request->mappedAttributes());
-                return new UserResource($user);
-            }
-
-            return $this->error('You are not authorized to update this user', 403);
-        } catch (ModelNotFoundException $ex) {
-            return $this->error('User not found', 404);
+        // Policy
+        if (Gate::allows('update', $user)) {
+            $user->update($request->mappedAttributes());
+            return new UserResource($user);
         }
+
+        throw new AccessDeniedHttpException('You are not authorized to update this resource');
     }
 
     /**
@@ -81,21 +75,14 @@ class UserController extends ApiController
      * Method: PUT
      * URI: /api/v1/users/{user_id}
      */
-    public function replace(ReplaceUserRequest $request, string $user_id)
+    public function replace(ReplaceUserRequest $request, User $user)
     {
-        try {
-            $user = User::findOrFail($user_id);
-
-            // Policy
-            if (Gate::allows('replace', $user)) {
-                $user->update($request->mappedAttributes());
-                return new UserResource($user);
-            }
-
-            return $this->error('You are not authorized to replace this user', 403);
-        } catch (ModelNotFoundException $ex) {
-            return $this->error('User not found', 404);
+        if (Gate::allows('replace', $user)) {
+            $user->update($request->mappedAttributes());
+            return new UserResource($user);
         }
+
+        throw new AccessDeniedHttpException('You are not authorized to replace this resource');
     }
 
     /**
@@ -103,24 +90,17 @@ class UserController extends ApiController
      * Method: DELETE
      * URI: /api/v1/users/{user_id}
      */
-    public function destroy(string $user_id)
+    public function destroy(User $user)
     {
-        try {
-            $user = User::findOrFail($user_id);
-
-            if ($user->tickets()->exists()) {
-                return $this->error('User has associated tickets and cannot be deleted.', 400);
-            }
-
-            // Policy
-            if (Gate::allows('delete', $user)) {
-                $user->delete();
-                return $this->success('User deleted successfully');
-            }
-
-            return $this->error('You are not authorized to delete this user', 403);
-        } catch (ModelNotFoundException $ex) {
-            return $this->error('User not found', 404);
+        if (Gate::denies('delete', $user)) {
+            throw new AccessDeniedHttpException('You are not authorized to delete this resource');
         }
+
+        if ($user->tickets()->exists()) {
+            throw new AccessDeniedHttpException('User has tickets and cannot be deleted');
+        }
+
+        $user->delete();
+        return $this->ok('User deleted successfully');
     }
 }

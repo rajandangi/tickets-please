@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Permissions\V1\Abilities;
+use Illuminate\Auth\AuthenticationException;
 
 class AuthController extends Controller
 {
@@ -22,7 +23,7 @@ class AuthController extends Controller
 
         if (! $user || ! Hash::check($request->password, $user->password)) {
             // 401 : HTTP Unauthorized (not logged in)
-            return $this->error('Invalid Credentials', 401);
+            throw new AuthenticationException('Invalid credentials');
         }
 
         return $this->ok(

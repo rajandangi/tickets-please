@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Api\V1;
 
+use App\Models\User;
 
 class ReplaceTicketRequest extends BaseTicketRequest
 {
@@ -28,5 +29,26 @@ class ReplaceTicketRequest extends BaseTicketRequest
         ];
 
         return $rules;
+    }
+
+    /**
+     * Prepare the data for validation.
+     */
+    protected function prepareForValidation(): void
+    {
+        if ($this->routeIs('authors.tickets.replace')) {
+            $author = $this->route('author');
+            $author_id = $author instanceof User ? $author->id : $author;
+
+            $this->merge([
+                'data' => array_merge($this->data ?? [], [
+                    'relationships' => [
+                        'author' => [
+                            'data' => ['id' => (int) $author_id]
+                        ]
+                    ]
+                ])
+            ]);
+        }
     }
 }

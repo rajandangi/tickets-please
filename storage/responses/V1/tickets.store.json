@@ -1,0 +1,27 @@
+{
+    "data": {
+        "type": "ticket",
+        "id": 110,
+        "attributes": {
+            "title": "This is my Title",
+            "description": "This is the description of the ticket",
+            "status": "A",
+            "createdAt": "2024-11-20T08:55:42.000000Z",
+            "updatedAt": "2024-11-20T08:55:42.000000Z"
+        },
+        "relationships": {
+            "author": {
+                "data": {
+                    "type": "user",
+                    "id": 1
+                },
+                "links": {
+                    "self": "https://tickets-please.test/api/v1/authors/1"
+                }
+            }
+        },
+        "links": {
+            "self": "https://tickets-please.test/api/v1/tickets/110"
+        }
+    }
+}

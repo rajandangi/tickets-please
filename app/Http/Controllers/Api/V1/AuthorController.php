@@ -11,7 +11,11 @@ use App\Http\Resources\V1\UserResource;
 class AuthorController extends ApiController
 {
     /**
-     * Display a listing of the resource.
+     * Get authors.
+     *
+     * Retrieves all users that created a ticket.
+     *
+     * @group Showing Authors
      */
     public function index(AuthorFilter $filters)
     {
@@ -20,17 +24,11 @@ class AuthorController extends ApiController
 
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreUserRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     * Method: GET
-     * URI: /api/v1/authors/{author_id}
+     * Get an author.
+     *
+     * Retrieves all users that created a ticket.
+     *
+     * @group Showing Authors
      */
     public function show(User $author)
     {
@@ -39,22 +37,4 @@ class AuthorController extends ApiController
         }
         return new UserResource($author);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateUserRequest $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
-    {
-        //
-    }
-
-
 }

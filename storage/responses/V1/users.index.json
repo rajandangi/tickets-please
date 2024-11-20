@@ -1,0 +1,108 @@
+{
+    "data": [
+        {
+            "type": "user",
+            "id": 13,
+            "attributes": {
+                "name": "My user",
+                "email": "user@user.com",
+                "isManager": false
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/authors/13"
+            }
+        },
+        {
+            "type": "user",
+            "id": 11,
+            "attributes": {
+                "name": "The manager",
+                "email": "manager@example.com",
+                "isManager": true
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/authors/11"
+            }
+        },
+        {
+            "type": "user",
+            "id": 10,
+            "attributes": {
+                "name": "Edwina Weimann",
+                "email": "fkirlin@example.org",
+                "isManager": false
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/authors/10"
+            }
+        },
+        {
+            "type": "user",
+            "id": 9,
+            "attributes": {
+                "name": "Mrs. Dayna Hand MD",
+                "email": "bins.angie@example.net",
+                "isManager": false
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/authors/9"
+            }
+        },
+        {
+            "type": "user",
+            "id": 8,
+            "attributes": {
+                "name": "Marisa Pouros",
+                "email": "jamil28@example.org",
+                "isManager": false
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/authors/8"
+            }
+        },
+        {
+            "type": "user",
+            "id": 7,
+            "attributes": {
+                "name": "Mr. Fausto Murazik DVM",
+                "email": "hintz.chelsea@example.com",
+                "isManager": false
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/authors/7"
+            }
+        }
+    ],
+    "links": {
+        "first": "https://tickets-please.test/api/v1/users?page=1",
+        "last": "https://tickets-please.test/api/v1/users?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "links": [
+            {
+                "url": null,
+                "label": "&laquo; Previous",
+                "active": false
+            },
+            {
+                "url": "https://tickets-please.test/api/v1/users?page=1",
+                "label": "1",
+                "active": true
+            },
+            {
+                "url": null,
+                "label": "Next &raquo;",
+                "active": false
+            }
+        ],
+        "path": "https://tickets-please.test/api/v1/users",
+        "per_page": 15,
+        "to": 12,
+        "total": 12
+    }
+}

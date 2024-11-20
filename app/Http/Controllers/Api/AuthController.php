@@ -15,6 +15,19 @@ class AuthController extends Controller
 {
     use ApiResponses;
 
+    /**
+     * Login
+     *
+     * Authenticate user and return's user API token.
+     *
+     * @unauthenticated
+     * @group Authentication
+     *
+     * @bodyParam email string required User email. Example:abcd@example.com
+     * @bodyParam password string required User password.
+     *
+     * @responseFile responses/V1/auth.login.json
+     */
     public function login(LoginUserRequest $request)
     {
         $request->validated($request->all());
@@ -38,6 +51,17 @@ class AuthController extends Controller
         );
     }
 
+
+    /**
+     * Logout
+     *
+     * Logout user and delete user API token.
+     *
+     * @authenticated
+     * @group Authentication
+     *
+     * @responseFile responses/V1/auth.logout.json
+     */
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();

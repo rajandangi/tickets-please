@@ -18,13 +18,17 @@ class AuthorTicketController extends ApiController
     protected $policyClass = TicketPolicy::class;
 
     /**
-     * Display a paginated listing of the tickets for a specific author.
-     * Method: GET
-     * URI: /api/v1/authors/{author_id}/tickets
+     * Get all tickets for a specific author.
      *
-     * @param int $author_id The ID of the author whose tickets are to be retrieved.
-     * @param \App\Filters\TicketFilter $filters The filters to apply to the ticket query.
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection A collection of ticket resources.
+     * Retrieve a paginated list of tickets for a specific author.
+     *
+     * @group Managing Tickets by Author
+     *
+     * @responseFile responses/V1/authors.tickets.index.json
+     *
+     * @queryParam sort string Data field(s) to sort by. Separate multiple fields with commas. Denote descending sort
+     * with a minus sign. Example: id,-created_at
+     * @queryParam filter string Filter records using data fields. Example: filter[id]=1,2,filters[title]=*foo*
      */
     public function index($author_id, TicketFilter $filters)
     {
@@ -34,9 +38,15 @@ class AuthorTicketController extends ApiController
     }
 
     /**
-     * Store a newly created resource in storage.
-     * Method: POST
-     * URI: /api/v1/authors/{author_id}/tickets
+     * Create a ticket
+     *
+     * Creates a ticket for the specific user.
+     *
+     * @group Managing Tickets by Author
+     *
+     * @urlParam author_id integer required The author's ID. No-example
+     *
+     * @responseFile responses/V1/authors.tickets.store.json
      */
     public function store(StoreTicketRequest $request, User $author)
     {
@@ -50,9 +60,15 @@ class AuthorTicketController extends ApiController
     }
 
     /**
-     * Remove the specified resource from storage.
-     * Method: DELETE
-     * URI: /api/v1/authors/{author_id}/tickets/{ticket_id}
+     * Delete an author's ticket
+     *
+     * Deletes an author's ticket.
+     *
+     * @group Managing Tickets by Author
+     * @urlParam author_id integer required The author's ID. No-example
+     * @urlParam id integer required The ticket ID. No-example
+     *
+     * @responseFile responses/V1/tickets.destroy.json
      */
     public function destroy(User $author, Ticket $ticket)
     {
@@ -67,9 +83,15 @@ class AuthorTicketController extends ApiController
 
 
     /**
-     * Replace the specified resource in storage.
-     * Method: PUT
-     * URI: /api/v1/authors/{author_id}/tickets/{ticket_id}
+     * Replace an author's ticket
+     *
+     * Replaces an author's ticket.
+     *
+     * @group Managing Tickets by Author
+     * @urlParam author_id integer required The author's ID. No-example
+     * @urlParam ticket_id integer required The ticket ID. No-example
+     *
+     * @responseFile responses/V1/authors.tickets.replace.json
      */
     public function replace(ReplaceTicketRequest $request, User $author, Ticket $ticket)
     {
@@ -81,9 +103,15 @@ class AuthorTicketController extends ApiController
     }
 
     /**
-     * Update the specified resource in storage.
-     * Method: PATCH
-     * URI: /api/v1/authors/{author_id}/tickets/{ticket_id}
+     * Update an author's ticket
+     *
+     * Updates an author's ticket.
+     *
+     * @group Managing Tickets by Author
+     * @urlParam author_id integer required The author's ID. No-example
+     * @urlParam ticket_id integer required The ticket ID. No-example
+     *
+     * @responseFile responses/V1/authors.tickets.replace.json
      */
     public function update(UpdateTicketRequest $request, User $author, Ticket $ticket)
     {

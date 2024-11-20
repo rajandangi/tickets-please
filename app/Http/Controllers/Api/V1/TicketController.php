@@ -17,10 +17,18 @@ class TicketController extends ApiController
     protected $policyClass = TicketPolicy::class;
 
     /**
-     * Display a listing of the resource.
+     * Get all tickets
      *
-     * @param TicketFilter $filters The filters to apply to the query.
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @group Tickets Management
+     * @queryParam sort string Data field(s) to sort by. Separate multiple fields with commas and denote descending
+     * sort with a minus sign. Example: sort=title,-updatedAt
+     * @queryParam Include Author. Example: include=author
+     * @queryParam filter[status] Filter by status code: A,C,H, X. No-example
+     * @queryParam filter[title] Filter by title. Wildcard are supported. Example: filter[title]=*foo*
+     * @queryParam filter[createdAt] Filter by created date. Date range is supported with commas.
+     * Example: filter[createdAt]=2021-01-01,2021-12-31
+     *
+     * @responseFile responses/V1/tickets.index.json
      */
     public function index(TicketFilter $filters)
     {
@@ -29,7 +37,13 @@ class TicketController extends ApiController
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create a ticket
+     *
+     * Create a new ticket. Users can only create tickets for themselves. Managers can create tickets for any user.
+     *
+     * @group Tickets Management
+     *
+     * @responseFile responses/V1/tickets.store.json
      */
     public function store(StoreTicketRequest $request)
     {
@@ -42,7 +56,11 @@ class TicketController extends ApiController
     }
 
     /**
-     * Display the specified resource.
+     * Show Specific Ticket
+     *
+     * Display an individual ticket.
+     *
+     * @group Tickets Management
      */
     public function show(Ticket $ticket)
     {
@@ -53,9 +71,11 @@ class TicketController extends ApiController
     }
 
     /**
-     * Update the specified resource in storage.
-     * Method: PATCH
-     * URI: /api/v1/tickets/{ticket_id}
+     * Update Ticket
+     *
+     * Update an existing ticket record with new data values in the storage.
+     *
+     * @group Tickets Management
      */
     public function update(UpdateTicketRequest $request, Ticket $ticket)
     {
@@ -69,9 +89,11 @@ class TicketController extends ApiController
     }
 
     /**
-     * Update the specified resource in storage.
-     * Method: PUT
-     * URI: /api/v1/tickets/{ticket_id}
+     * Replace Ticket
+     *
+     * Replace an existing ticket record with new data values in the storage.
+     *
+     * @group Tickets Management
      */
     public function replace(ReplaceTicketRequest $request, Ticket $ticket)
     {
@@ -85,7 +107,11 @@ class TicketController extends ApiController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete Ticket
+     *
+     * Delete an existing ticket record from the storage.
+     *
+     * @group Tickets Management
      */
     public function destroy(Ticket $ticket)
     {

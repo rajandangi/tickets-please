@@ -1,0 +1,14 @@
+{
+    "data": {
+        "type": "user",
+        "id": 14,
+        "attributes": {
+            "name": "My user",
+            "email": "user1@example.com",
+            "isManager": false
+        },
+        "links": {
+            "self": "https://tickets-please.test/api/v1/authors/14"
+        }
+    }
+}

@@ -1,0 +1,100 @@
+name: 'Showing Authors'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/authors
+    metadata:
+      groupName: 'Showing Authors'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get authors.'
+      description: 'Retrieves all users that created a ticket.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"type":"user","id":1,"attributes":{"name":"Rajan Dangi","email":"rajandangi659@gmail.com","isManager":true,"emailVerifiedAt":"2024-11-18T07:20:03.000000Z","createdAt":"2024-11-18T07:20:04.000000Z","updatedAt":"2024-11-20T07:43:41.000000Z"},"links":{"self":"https:\/\/tickets-please.test\/api\/v1\/authors\/1"}},{"type":"user","id":2,"attributes":{"name":"Victor Roob","email":"jeffery.carter@example.net","isManager":false,"emailVerifiedAt":"2024-11-18T07:20:04.000000Z","createdAt":"2024-11-18T07:20:04.000000Z","updatedAt":"2024-11-18T07:20:04.000000Z"},"links":{"self":"https:\/\/tickets-please.test\/api\/v1\/authors\/2"}},{"type":"user","id":3,"attributes":{"name":"Quinton Murazik","email":"gpadberg@example.net","isManager":false,"emailVerifiedAt":"2024-11-18T07:20:04.000000Z","createdAt":"2024-11-18T07:20:04.000000Z","updatedAt":"2024-11-18T07:20:04.000000Z"},"links":{"self":"https:\/\/tickets-please.test\/api\/v1\/authors\/3"}},{"type":"user","id":4,"attributes":{"name":"Alyson Bartoletti","email":"freddie56@example.com","isManager":false,"emailVerifiedAt":"2024-11-18T07:20:04.000000Z","createdAt":"2024-11-18T07:20:04.000000Z","updatedAt":"2024-11-18T07:20:04.000000Z"},"links":{"self":"https:\/\/tickets-please.test\/api\/v1\/authors\/4"}},{"type":"user","id":5,"attributes":{"name":"Rajan Dangi","email":"rajandangi4@gmail.com","isManager":true,"emailVerifiedAt":"2024-11-18T07:20:04.000000Z","createdAt":"2024-11-18T07:20:04.000000Z","updatedAt":"2024-11-20T07:43:45.000000Z"},"links":{"self":"https:\/\/tickets-please.test\/api\/v1\/authors\/5"}},{"type":"user","id":6,"attributes":{"name":"Polly Schamberger","email":"asia.swift@example.com","isManager":false,"emailVerifiedAt":"2024-11-18T07:20:04.000000Z","createdAt":"2024-11-18T07:20:04.000000Z","updatedAt":"2024-11-18T07:20:04.000000Z"},"links":{"self":"https:\/\/tickets-please.test\/api\/v1\/authors\/6"}},{"type":"user","id":7,"attributes":{"name":"Mr. Fausto Murazik DVM","email":"hintz.chelsea@example.com","isManager":false,"emailVerifiedAt":"2024-11-18T07:20:04.000000Z","createdAt":"2024-11-18T07:20:04.000000Z","updatedAt":"2024-11-18T07:20:04.000000Z"},"links":{"self":"https:\/\/tickets-please.test\/api\/v1\/authors\/7"}},{"type":"user","id":8,"attributes":{"name":"Marisa Pouros","email":"jamil28@example.org","isManager":false,"emailVerifiedAt":"2024-11-18T07:20:04.000000Z","createdAt":"2024-11-18T07:20:04.000000Z","updatedAt":"2024-11-18T07:20:04.000000Z"},"links":{"self":"https:\/\/tickets-please.test\/api\/v1\/authors\/8"}},{"type":"user","id":9,"attributes":{"name":"Mrs. Dayna Hand MD","email":"bins.angie@example.net","isManager":false,"emailVerifiedAt":"2024-11-18T07:20:04.000000Z","createdAt":"2024-11-18T07:20:04.000000Z","updatedAt":"2024-11-18T07:20:04.000000Z"},"links":{"self":"https:\/\/tickets-please.test\/api\/v1\/authors\/9"}},{"type":"user","id":10,"attributes":{"name":"Edwina Weimann","email":"fkirlin@example.org","isManager":false,"emailVerifiedAt":"2024-11-18T07:20:04.000000Z","createdAt":"2024-11-18T07:20:04.000000Z","updatedAt":"2024-11-18T07:20:04.000000Z"},"links":{"self":"https:\/\/tickets-please.test\/api\/v1\/authors\/10"}}],"links":{"first":"https:\/\/tickets-please.test\/api\/v1\/authors?page=1","last":"https:\/\/tickets-please.test\/api\/v1\/authors?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"https:\/\/tickets-please.test\/api\/v1\/authors?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"https:\/\/tickets-please.test\/api\/v1\/authors","per_page":15,"to":10,"total":10}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 15|8VBul0BjhREvPy1bETaHe1WbGa8qGLi9PpyRlUpc3da45187'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/authors/{id}'
+    metadata:
+      groupName: 'Showing Authors'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get an author.'
+      description: 'Retrieves all users that created a ticket.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the author.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"type":"user","id":1,"attributes":{"name":"Rajan Dangi","email":"rajandangi659@gmail.com","isManager":true,"emailVerifiedAt":"2024-11-18T07:20:03.000000Z","createdAt":"2024-11-18T07:20:04.000000Z","updatedAt":"2024-11-20T07:43:41.000000Z"},"links":{"self":"https:\/\/tickets-please.test\/api\/v1\/authors\/1"}}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 15|8VBul0BjhREvPy1bETaHe1WbGa8qGLi9PpyRlUpc3da45187'
+    controller: null
+    method: null
+    route: null
+    custom: []

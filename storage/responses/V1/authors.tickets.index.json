@@ -1,0 +1,60 @@
+{
+    "data": [
+        {
+            "type": "ticket",
+            "id": 48,
+            "attributes": {
+                "title": "My Ticket",
+                "status": "X",
+                "createdAt": "2024-11-18T07:20:04.000000Z",
+                "updatedAt": "2024-11-19T00:59:46.000000Z"
+            },
+            "relationships": {
+                "author": {
+                    "data": {
+                        "type": "user",
+                        "id": 1
+                    },
+                    "links": {
+                        "self": "https://tickets-please.test/api/v1/authors/1"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/tickets/48"
+            }
+        }
+    ],
+    "links": {
+        "first": "https://tickets-please.test/api/v1/authors/1/tickets?page=1",
+        "last": "https://tickets-please.test/api/v1/authors/1/tickets?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "links": [
+            {
+                "url": null,
+                "label": "&laquo; Previous",
+                "active": false
+            },
+            {
+                "url": "https://tickets-please.test/api/v1/authors/1/tickets?page=1",
+                "label": "1",
+                "active": true
+            },
+            {
+                "url": null,
+                "label": "Next &raquo;",
+                "active": false
+            }
+        ],
+        "path": "https://tickets-please.test/api/v1/authors/1/tickets",
+        "per_page": 15,
+        "to": 1,
+        "total": 1
+    }
+}

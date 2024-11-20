@@ -1,0 +1,531 @@
+name: 'Users Management'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/users
+    metadata:
+      groupName: 'Users Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get all users'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      sort:
+        name: sort
+        description: |-
+          Data field(s) to sort by. Separate multiple fields with commas and denote descending
+          sort with a minus sign.
+        required: false
+        example: 'sort=name,-createdAt'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      include:
+        name: include
+        description: 'Include related data.'
+        required: false
+        example: include=tickets
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      'filter[name]':
+        name: 'filter[name]'
+        description: 'Filter by name. Wildcard are supported.'
+        required: false
+        example: 'filter[name]=*foo*'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      'filter[email]':
+        name: 'filter[email]'
+        description: 'Filter by email. Wildcard are supported.'
+        required: false
+        example: 'filter[email]=*foo*'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanQueryParameters:
+      sort: 'sort=name,-createdAt'
+      include: include=tickets
+      'filter[name]': 'filter[name]=*foo*'
+      'filter[email]': 'filter[email]=*foo*'
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"data\": [\r\n        {\r\n            \"type\": \"user\",\r\n            \"id\": 13,\r\n            \"attributes\": {\r\n                \"name\": \"My user\",\r\n                \"email\": \"user@user.com\",\r\n                \"isManager\": false\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/authors/13\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"user\",\r\n            \"id\": 11,\r\n            \"attributes\": {\r\n                \"name\": \"The manager\",\r\n                \"email\": \"manager@example.com\",\r\n                \"isManager\": true\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/authors/11\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"user\",\r\n            \"id\": 10,\r\n            \"attributes\": {\r\n                \"name\": \"Edwina Weimann\",\r\n                \"email\": \"fkirlin@example.org\",\r\n                \"isManager\": false\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/authors/10\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"user\",\r\n            \"id\": 9,\r\n            \"attributes\": {\r\n                \"name\": \"Mrs. Dayna Hand MD\",\r\n                \"email\": \"bins.angie@example.net\",\r\n                \"isManager\": false\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/authors/9\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"user\",\r\n            \"id\": 8,\r\n            \"attributes\": {\r\n                \"name\": \"Marisa Pouros\",\r\n                \"email\": \"jamil28@example.org\",\r\n                \"isManager\": false\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/authors/8\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"user\",\r\n            \"id\": 7,\r\n            \"attributes\": {\r\n                \"name\": \"Mr. Fausto Murazik DVM\",\r\n                \"email\": \"hintz.chelsea@example.com\",\r\n                \"isManager\": false\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/authors/7\"\r\n            }\r\n        }\r\n    ],\r\n    \"links\": {\r\n        \"first\": \"https://tickets-please.test/api/v1/users?page=1\",\r\n        \"last\": \"https://tickets-please.test/api/v1/users?page=1\",\r\n        \"prev\": null,\r\n        \"next\": null\r\n    },\r\n    \"meta\": {\r\n        \"current_page\": 1,\r\n        \"from\": 1,\r\n        \"last_page\": 1,\r\n        \"links\": [\r\n            {\r\n                \"url\": null,\r\n                \"label\": \"&laquo; Previous\",\r\n                \"active\": false\r\n            },\r\n            {\r\n                \"url\": \"https://tickets-please.test/api/v1/users?page=1\",\r\n                \"label\": \"1\",\r\n                \"active\": true\r\n            },\r\n            {\r\n                \"url\": null,\r\n                \"label\": \"Next &raquo;\",\r\n                \"active\": false\r\n            }\r\n        ],\r\n        \"path\": \"https://tickets-please.test/api/v1/users\",\r\n        \"per_page\": 15,\r\n        \"to\": 12,\r\n        \"total\": 12\r\n    }\r\n}"
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 15|8VBul0BjhREvPy1bETaHe1WbGa8qGLi9PpyRlUpc3da45187'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/users
+    metadata:
+      groupName: 'Users Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create a user'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      data.attributes:
+        name: data.attributes
+        description: ''
+        required: false
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data:
+        name: data
+        description: ''
+        required: false
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.name:
+        name: data.attributes.name
+        description: ''
+        required: true
+        example: eos
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.email:
+        name: data.attributes.email
+        description: 'Must be a valid email address.'
+        required: true
+        example: sterling.hintz@example.net
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.isManager:
+        name: data.attributes.isManager
+        description: ''
+        required: true
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.password:
+        name: data.attributes.password
+        description: 'Must be at least 8 characters.'
+        required: true
+        example: '3Z3LD1Yi}15ZI%n`;j3'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      data:
+        attributes:
+          name: eos
+          email: sterling.hintz@example.net
+          isManager: true
+          password: '3Z3LD1Yi}15ZI%n`;j3'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"data\": {\r\n        \"type\": \"user\",\r\n        \"id\": 14,\r\n        \"attributes\": {\r\n            \"name\": \"My user\",\r\n            \"email\": \"user1@example.com\",\r\n            \"isManager\": false\r\n        },\r\n        \"links\": {\r\n            \"self\": \"https://tickets-please.test/api/v1/authors/14\"\r\n        }\r\n    }\r\n}"
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 15|8VBul0BjhREvPy1bETaHe1WbGa8qGLi9PpyRlUpc3da45187'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/users/{id}'
+    metadata:
+      groupName: 'Users Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a specific user'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"data\": {\r\n        \"type\": \"user\",\r\n        \"id\": 1,\r\n        \"attributes\": {\r\n            \"name\": \"Rajan Dangi\",\r\n            \"email\": \"rajandangi@example.com\",\r\n            \"isManager\": true\r\n        },\r\n        \"links\": {\r\n            \"self\": \"https://tickets-please.test/api/v1/authors/1\"\r\n        }\r\n    }\r\n}"
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 15|8VBul0BjhREvPy1bETaHe1WbGa8qGLi9PpyRlUpc3da45187'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/users/{id}'
+    metadata:
+      groupName: 'Users Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete a user'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"data\": [],\r\n    \"message\": \"User deleted successfully\",\r\n    \"status\": 200\r\n}"
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 15|8VBul0BjhREvPy1bETaHe1WbGa8qGLi9PpyRlUpc3da45187'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/users/{user_id}'
+    metadata:
+      groupName: 'Users Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Replace a user'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        name: user_id
+        description: 'The ID of the user.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      user_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      data.attributes:
+        name: data.attributes
+        description: ''
+        required: false
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data:
+        name: data
+        description: ''
+        required: false
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.name:
+        name: data.attributes.name
+        description: ''
+        required: true
+        example: possimus
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.email:
+        name: data.attributes.email
+        description: 'Must be a valid email address.'
+        required: true
+        example: emmerich.orville@example.org
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.isManager:
+        name: data.attributes.isManager
+        description: ''
+        required: true
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.password:
+        name: data.attributes.password
+        description: 'Must be at least 8 characters.'
+        required: true
+        example: 'g"dC-fDtBQQm2'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      data:
+        attributes:
+          name: possimus
+          email: emmerich.orville@example.org
+          isManager: false
+          password: 'g"dC-fDtBQQm2'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"data\": {\r\n        \"type\": \"user\",\r\n        \"id\": 1,\r\n        \"attributes\": {\r\n            \"name\": \"Rajan Dangi\",\r\n            \"email\": \"rajandangi@example.com\",\r\n            \"isManager\": true\r\n        },\r\n        \"links\": {\r\n            \"self\": \"https://tickets-please.test/api/v1/authors/1\"\r\n        }\r\n    }\r\n}"
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 15|8VBul0BjhREvPy1bETaHe1WbGa8qGLi9PpyRlUpc3da45187'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/v1/users/{user_id}'
+    metadata:
+      groupName: 'Users Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update a user'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        name: user_id
+        description: 'The ID of the user.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      user_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      data.attributes:
+        name: data.attributes
+        description: ''
+        required: false
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data:
+        name: data
+        description: ''
+        required: false
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.name:
+        name: data.attributes.name
+        description: ''
+        required: false
+        example: quibusdam
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.email:
+        name: data.attributes.email
+        description: 'Must be a valid email address.'
+        required: false
+        example: jade.bashirian@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.isManager:
+        name: data.attributes.isManager
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.password:
+        name: data.attributes.password
+        description: 'Must be at least 8 characters.'
+        required: false
+        example: QDj+dVul/o/%k0|Zn8
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      data:
+        attributes:
+          name: quibusdam
+          email: jade.bashirian@example.com
+          isManager: false
+          password: QDj+dVul/o/%k0|Zn8
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"data\": {\r\n        \"type\": \"user\",\r\n        \"id\": 1,\r\n        \"attributes\": {\r\n            \"name\": \"Rajan Dangi\",\r\n            \"email\": \"rajandangi@example.com\",\r\n            \"isManager\": true\r\n        },\r\n        \"links\": {\r\n            \"self\": \"https://tickets-please.test/api/v1/authors/1\"\r\n        }\r\n    }\r\n}"
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 15|8VBul0BjhREvPy1bETaHe1WbGa8qGLi9PpyRlUpc3da45187'
+    controller: null
+    method: null
+    route: null
+    custom: []

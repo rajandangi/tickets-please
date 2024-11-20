@@ -17,9 +17,17 @@ class UserController extends ApiController
     protected $policyClass = UserPolicy::class;
 
     /**
-     * Display a listing of the resource.
-     * Method: GET
-     * URI: /api/v1/users
+     * Get all users
+     *
+     * @group Users Management
+     *
+     * @queryParam sort string Data field(s) to sort by. Separate multiple fields with commas and denote descending
+     * sort with a minus sign. Example: sort=name,-createdAt
+     * @queryParam include Include related data. Example: include=tickets
+     * @queryParam filter[name] Filter by name. Wildcard are supported. Example: filter[name]=*foo*
+     * @queryParam filter[email] Filter by email. Wildcard are supported. Example: filter[email]=*foo*
+     *
+     * @responseFile responses/V1/users.index.json
      */
     public function index(AuthorFilter $filters)
     {
@@ -27,9 +35,10 @@ class UserController extends ApiController
     }
 
     /**
-     * Store a newly created resource in storage.
-     * Method: POST
-     * URI: /api/v1/users
+     * Create a user
+     *
+     * @group Users Management
+     * @responseFile responses/V1/users.store.json
      */
     public function store(StoreUserRequest $request)
     {
@@ -41,9 +50,11 @@ class UserController extends ApiController
     }
 
     /**
-     * Display the specified resource.
-     * Method: GET
-     * URI: /api/v1/users/{user_id}
+     * Display a specific user
+     *
+     * @group Users Management
+     *
+     * @responseFile responses/V1/users.show.json
      */
     public function show(User $user)
     {
@@ -55,9 +66,11 @@ class UserController extends ApiController
     }
 
     /**
-     * Update the specified resource in storage.
-     * Method: PATCH
-     * URI: /api/v1/users/{user_id}
+     * Update a user
+     *
+     * @group Users Management
+     *
+     * @responseFile responses/V1/users.update.json
      */
     public function update(UpdateUserRequest $request, User $user)
     {
@@ -71,9 +84,11 @@ class UserController extends ApiController
     }
 
     /**
-     * Update the specified resource in storage.
-     * Method: PUT
-     * URI: /api/v1/users/{user_id}
+     * Replace a user
+     *
+     * @group Users Management
+     *
+     * @responseFile responses/V1/users.replace.json
      */
     public function replace(ReplaceUserRequest $request, User $user)
     {
@@ -86,9 +101,11 @@ class UserController extends ApiController
     }
 
     /**
-     * Remove the specified resource from storage.
-     * Method: DELETE
-     * URI: /api/v1/users/{user_id}
+     * Delete a user
+     *
+     * @group Users Management
+     *
+     * @responseFile responses/V1/users.destroy.json
      */
     public function destroy(User $user)
     {

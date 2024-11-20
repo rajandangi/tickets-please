@@ -17,7 +17,7 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
 
     Route::apiResource('authors', AuthorController::class)->except(['store', 'update', 'destroy']);
 
-    Route::apiResource('authors.tickets', AuthorTicketController::class)->except('update');
+    Route::apiResource('authors.tickets', AuthorTicketController::class)->except('update','show');
     Route::put('authors/{author}/tickets/{ticket}', [AuthorTicketController::class, 'replace'])
         ->name('authors.tickets.replace');
     Route::patch('authors/{author}/tickets/{ticket}', [AuthorTicketController::class, 'update'])

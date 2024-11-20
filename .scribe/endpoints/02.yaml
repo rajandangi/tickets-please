@@ -1,0 +1,637 @@
+name: 'Tickets Management'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/tickets
+    metadata:
+      groupName: 'Tickets Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get all tickets'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      sort:
+        name: sort
+        description: |-
+          Data field(s) to sort by. Separate multiple fields with commas and denote descending
+          sort with a minus sign.
+        required: false
+        example: 'sort=title,-updatedAt'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      Include:
+        name: Include
+        description: Author.
+        required: false
+        example: include=author
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      'filter[status]':
+        name: 'filter[status]'
+        description: 'Filter by status code: A,C,H, X.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      'filter[title]':
+        name: 'filter[title]'
+        description: 'Filter by title. Wildcard are supported.'
+        required: false
+        example: 'filter[title]=*foo*'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      'filter[createdAt]':
+        name: 'filter[createdAt]'
+        description: 'Filter by created date. Date range is supported with commas.'
+        required: false
+        example: 'filter[createdAt]=2021-01-01,2021-12-31'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanQueryParameters:
+      sort: 'sort=title,-updatedAt'
+      Include: include=author
+      'filter[title]': 'filter[title]=*foo*'
+      'filter[createdAt]': 'filter[createdAt]=2021-01-01,2021-12-31'
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"data\": [\r\n        {\r\n            \"type\": \"ticket\",\r\n            \"id\": 1,\r\n            \"attributes\": {\r\n                \"title\": \"magnam voluptatem dolorem\",\r\n                \"status\": \"C\",\r\n                \"createdAt\": \"2024-11-18T07:20:04.000000Z\",\r\n                \"updatedAt\": \"2024-11-18T07:20:04.000000Z\"\r\n            },\r\n            \"relationships\": {\r\n                \"author\": {\r\n                    \"data\": {\r\n                        \"type\": \"user\",\r\n                        \"id\": 10\r\n                    },\r\n                    \"links\": {\r\n                        \"self\": \"https://tickets-please.test/api/v1/authors/10\"\r\n                    }\r\n                }\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/tickets/1\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"ticket\",\r\n            \"id\": 2,\r\n            \"attributes\": {\r\n                \"title\": \"autem inventore in\",\r\n                \"status\": \"H\",\r\n                \"createdAt\": \"2024-11-18T07:20:04.000000Z\",\r\n                \"updatedAt\": \"2024-11-18T07:20:04.000000Z\"\r\n            },\r\n            \"relationships\": {\r\n                \"author\": {\r\n                    \"data\": {\r\n                        \"type\": \"user\",\r\n                        \"id\": 3\r\n                    },\r\n                    \"links\": {\r\n                        \"self\": \"https://tickets-please.test/api/v1/authors/3\"\r\n                    }\r\n                }\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/tickets/2\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"ticket\",\r\n            \"id\": 3,\r\n            \"attributes\": {\r\n                \"title\": \"fugit ut neque\",\r\n                \"status\": \"H\",\r\n                \"createdAt\": \"2024-11-18T07:20:04.000000Z\",\r\n                \"updatedAt\": \"2024-11-18T07:20:04.000000Z\"\r\n            },\r\n            \"relationships\": {\r\n                \"author\": {\r\n                    \"data\": {\r\n                        \"type\": \"user\",\r\n                        \"id\": 2\r\n                    },\r\n                    \"links\": {\r\n                        \"self\": \"https://tickets-please.test/api/v1/authors/2\"\r\n                    }\r\n                }\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/tickets/3\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"ticket\",\r\n            \"id\": 4,\r\n            \"attributes\": {\r\n                \"title\": \"consectetur similique fugiat\",\r\n                \"status\": \"H\",\r\n                \"createdAt\": \"2024-11-18T07:20:04.000000Z\",\r\n                \"updatedAt\": \"2024-11-18T07:20:04.000000Z\"\r\n            },\r\n            \"relationships\": {\r\n                \"author\": {\r\n                    \"data\": {\r\n                        \"type\": \"user\",\r\n                        \"id\": 10\r\n                    },\r\n                    \"links\": {\r\n                        \"self\": \"https://tickets-please.test/api/v1/authors/10\"\r\n                    }\r\n                }\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/tickets/4\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"ticket\",\r\n            \"id\": 5,\r\n            \"attributes\": {\r\n                \"title\": \"qui sequi ad\",\r\n                \"status\": \"C\",\r\n                \"createdAt\": \"2024-11-18T07:20:04.000000Z\",\r\n                \"updatedAt\": \"2024-11-18T07:20:04.000000Z\"\r\n            },\r\n            \"relationships\": {\r\n                \"author\": {\r\n                    \"data\": {\r\n                        \"type\": \"user\",\r\n                        \"id\": 4\r\n                    },\r\n                    \"links\": {\r\n                        \"self\": \"https://tickets-please.test/api/v1/authors/4\"\r\n                    }\r\n                }\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/tickets/5\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"ticket\",\r\n            \"id\": 6,\r\n            \"attributes\": {\r\n                \"title\": \"necessitatibus fugiat sit\",\r\n                \"status\": \"X\",\r\n                \"createdAt\": \"2024-11-18T07:20:04.000000Z\",\r\n                \"updatedAt\": \"2024-11-18T07:20:04.000000Z\"\r\n            },\r\n            \"relationships\": {\r\n                \"author\": {\r\n                    \"data\": {\r\n                        \"type\": \"user\",\r\n                        \"id\": 4\r\n                    },\r\n                    \"links\": {\r\n                        \"self\": \"https://tickets-please.test/api/v1/authors/4\"\r\n                    }\r\n                }\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/tickets/6\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"ticket\",\r\n            \"id\": 7,\r\n            \"attributes\": {\r\n                \"title\": \"in sint iure\",\r\n                \"status\": \"A\",\r\n                \"createdAt\": \"2024-11-18T07:20:04.000000Z\",\r\n                \"updatedAt\": \"2024-11-18T07:20:04.000000Z\"\r\n            },\r\n            \"relationships\": {\r\n                \"author\": {\r\n                    \"data\": {\r\n                        \"type\": \"user\",\r\n                        \"id\": 2\r\n                    },\r\n                    \"links\": {\r\n                        \"self\": \"https://tickets-please.test/api/v1/authors/2\"\r\n                    }\r\n                }\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/tickets/7\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"ticket\",\r\n            \"id\": 8,\r\n            \"attributes\": {\r\n                \"title\": \"temporibus possimus aperiam\",\r\n                \"status\": \"H\",\r\n                \"createdAt\": \"2024-11-18T07:20:04.000000Z\",\r\n                \"updatedAt\": \"2024-11-18T07:20:04.000000Z\"\r\n            },\r\n            \"relationships\": {\r\n                \"author\": {\r\n                    \"data\": {\r\n                        \"type\": \"user\",\r\n                        \"id\": 10\r\n                    },\r\n                    \"links\": {\r\n                        \"self\": \"https://tickets-please.test/api/v1/authors/10\"\r\n                    }\r\n                }\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/tickets/8\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"ticket\",\r\n            \"id\": 9,\r\n            \"attributes\": {\r\n                \"title\": \"omnis atque voluptatem\",\r\n                \"status\": \"H\",\r\n                \"createdAt\": \"2024-11-18T07:20:04.000000Z\",\r\n                \"updatedAt\": \"2024-11-18T07:20:04.000000Z\"\r\n            },\r\n            \"relationships\": {\r\n                \"author\": {\r\n                    \"data\": {\r\n                        \"type\": \"user\",\r\n                        \"id\": 8\r\n                    },\r\n                    \"links\": {\r\n                        \"self\": \"https://tickets-please.test/api/v1/authors/8\"\r\n                    }\r\n                }\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/tickets/9\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"ticket\",\r\n            \"id\": 10,\r\n            \"attributes\": {\r\n                \"title\": \"est voluptas non\",\r\n                \"status\": \"A\",\r\n                \"createdAt\": \"2024-11-18T07:20:04.000000Z\",\r\n                \"updatedAt\": \"2024-11-18T07:20:04.000000Z\"\r\n            },\r\n            \"relationships\": {\r\n                \"author\": {\r\n                    \"data\": {\r\n                        \"type\": \"user\",\r\n                        \"id\": 5\r\n                    },\r\n                    \"links\": {\r\n                        \"self\": \"https://tickets-please.test/api/v1/authors/5\"\r\n                    }\r\n                }\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/tickets/10\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"ticket\",\r\n            \"id\": 11,\r\n            \"attributes\": {\r\n                \"title\": \"ipsam totam tenetur\",\r\n                \"status\": \"H\",\r\n                \"createdAt\": \"2024-11-18T07:20:04.000000Z\",\r\n                \"updatedAt\": \"2024-11-18T07:20:04.000000Z\"\r\n            },\r\n            \"relationships\": {\r\n                \"author\": {\r\n                    \"data\": {\r\n                        \"type\": \"user\",\r\n                        \"id\": 8\r\n                    },\r\n                    \"links\": {\r\n                        \"self\": \"https://tickets-please.test/api/v1/authors/8\"\r\n                    }\r\n                }\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/tickets/11\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"ticket\",\r\n            \"id\": 12,\r\n            \"attributes\": {\r\n                \"title\": \"aut aliquam veritatis\",\r\n                \"status\": \"A\",\r\n                \"createdAt\": \"2024-11-18T07:20:04.000000Z\",\r\n                \"updatedAt\": \"2024-11-18T07:20:04.000000Z\"\r\n            },\r\n            \"relationships\": {\r\n                \"author\": {\r\n                    \"data\": {\r\n                        \"type\": \"user\",\r\n                        \"id\": 3\r\n                    },\r\n                    \"links\": {\r\n                        \"self\": \"https://tickets-please.test/api/v1/authors/3\"\r\n                    }\r\n                }\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/tickets/12\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"ticket\",\r\n            \"id\": 13,\r\n            \"attributes\": {\r\n                \"title\": \"id quia ipsam\",\r\n                \"status\": \"C\",\r\n                \"createdAt\": \"2024-11-18T07:20:04.000000Z\",\r\n                \"updatedAt\": \"2024-11-18T07:20:04.000000Z\"\r\n            },\r\n            \"relationships\": {\r\n                \"author\": {\r\n                    \"data\": {\r\n                        \"type\": \"user\",\r\n                        \"id\": 5\r\n                    },\r\n                    \"links\": {\r\n                        \"self\": \"https://tickets-please.test/api/v1/authors/5\"\r\n                    }\r\n                }\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/tickets/13\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"ticket\",\r\n            \"id\": 14,\r\n            \"attributes\": {\r\n                \"title\": \"sunt dolorum amet\",\r\n                \"status\": \"X\",\r\n                \"createdAt\": \"2024-11-18T07:20:04.000000Z\",\r\n                \"updatedAt\": \"2024-11-18T07:20:04.000000Z\"\r\n            },\r\n            \"relationships\": {\r\n                \"author\": {\r\n                    \"data\": {\r\n                        \"type\": \"user\",\r\n                        \"id\": 7\r\n                    },\r\n                    \"links\": {\r\n                        \"self\": \"https://tickets-please.test/api/v1/authors/7\"\r\n                    }\r\n                }\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/tickets/14\"\r\n            }\r\n        },\r\n        {\r\n            \"type\": \"ticket\",\r\n            \"id\": 15,\r\n            \"attributes\": {\r\n                \"title\": \"ea quisquam molestiae\",\r\n                \"status\": \"C\",\r\n                \"createdAt\": \"2024-11-18T07:20:04.000000Z\",\r\n                \"updatedAt\": \"2024-11-18T07:20:04.000000Z\"\r\n            },\r\n            \"relationships\": {\r\n                \"author\": {\r\n                    \"data\": {\r\n                        \"type\": \"user\",\r\n                        \"id\": 5\r\n                    },\r\n                    \"links\": {\r\n                        \"self\": \"https://tickets-please.test/api/v1/authors/5\"\r\n                    }\r\n                }\r\n            },\r\n            \"links\": {\r\n                \"self\": \"https://tickets-please.test/api/v1/tickets/15\"\r\n            }\r\n        }\r\n    ],\r\n    \"links\": {\r\n        \"first\": \"https://tickets-please.test/api/v1/tickets?page=1\",\r\n        \"last\": \"https://tickets-please.test/api/v1/tickets?page=7\",\r\n        \"prev\": null,\r\n        \"next\": \"https://tickets-please.test/api/v1/tickets?page=2\"\r\n    },\r\n    \"meta\": {\r\n        \"current_page\": 1,\r\n        \"from\": 1,\r\n        \"last_page\": 7,\r\n        \"links\": [\r\n            {\r\n                \"url\": null,\r\n                \"label\": \"&laquo; Previous\",\r\n                \"active\": false\r\n            },\r\n            {\r\n                \"url\": \"https://tickets-please.test/api/v1/tickets?page=1\",\r\n                \"label\": \"1\",\r\n                \"active\": true\r\n            },\r\n            {\r\n                \"url\": \"https://tickets-please.test/api/v1/tickets?page=2\",\r\n                \"label\": \"2\",\r\n                \"active\": false\r\n            },\r\n            {\r\n                \"url\": \"https://tickets-please.test/api/v1/tickets?page=3\",\r\n                \"label\": \"3\",\r\n                \"active\": false\r\n            },\r\n            {\r\n                \"url\": \"https://tickets-please.test/api/v1/tickets?page=4\",\r\n                \"label\": \"4\",\r\n                \"active\": false\r\n            },\r\n            {\r\n                \"url\": \"https://tickets-please.test/api/v1/tickets?page=5\",\r\n                \"label\": \"5\",\r\n                \"active\": false\r\n            },\r\n            {\r\n                \"url\": \"https://tickets-please.test/api/v1/tickets?page=6\",\r\n                \"label\": \"6\",\r\n                \"active\": false\r\n            },\r\n            {\r\n                \"url\": \"https://tickets-please.test/api/v1/tickets?page=7\",\r\n                \"label\": \"7\",\r\n                \"active\": false\r\n            },\r\n            {\r\n                \"url\": \"https://tickets-please.test/api/v1/tickets?page=2\",\r\n                \"label\": \"Next &raquo;\",\r\n                \"active\": false\r\n            }\r\n        ],\r\n        \"path\": \"https://tickets-please.test/api/v1/tickets\",\r\n        \"per_page\": 15,\r\n        \"to\": 15,\r\n        \"total\": 100\r\n    }\r\n}"
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 15|8VBul0BjhREvPy1bETaHe1WbGa8qGLi9PpyRlUpc3da45187'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/tickets
+    metadata:
+      groupName: 'Tickets Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create a ticket'
+      description: 'Create a new ticket. Users can only create tickets for themselves. Managers can create tickets for any user.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      data:
+        name: data
+        description: ''
+        required: true
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes:
+        name: data.attributes
+        description: ''
+        required: true
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.relationships:
+        name: data.relationships
+        description: ''
+        required: true
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.relationships.author:
+        name: data.relationships.author
+        description: ''
+        required: true
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.relationships.author.data:
+        name: data.relationships.author.data
+        description: ''
+        required: true
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.title:
+        name: data.attributes.title
+        description: "The ticket's title (method)."
+        required: true
+        example: No-example
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.description:
+        name: data.attributes.description
+        description: "The ticket's description."
+        required: true
+        example: No-example
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.status:
+        name: data.attributes.status
+        description: "The ticket's status."
+        required: true
+        example: C
+        type: string
+        enumValues:
+          - A
+          - C
+          - H
+          - X
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.relationships.author.data.id:
+        name: data.relationships.author.data.id
+        description: 'The author assigned to the ticket. The <code>id</code> of an existing record in the users table.'
+        required: true
+        example: 0
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      data:
+        attributes:
+          title: No-example
+          description: No-example
+          status: C
+        relationships:
+          author:
+            data:
+              id: 0
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"data\": {\r\n        \"type\": \"ticket\",\r\n        \"id\": 110,\r\n        \"attributes\": {\r\n            \"title\": \"This is my Title\",\r\n            \"description\": \"This is the description of the ticket\",\r\n            \"status\": \"A\",\r\n            \"createdAt\": \"2024-11-20T08:55:42.000000Z\",\r\n            \"updatedAt\": \"2024-11-20T08:55:42.000000Z\"\r\n        },\r\n        \"relationships\": {\r\n            \"author\": {\r\n                \"data\": {\r\n                    \"type\": \"user\",\r\n                    \"id\": 1\r\n                },\r\n                \"links\": {\r\n                    \"self\": \"https://tickets-please.test/api/v1/authors/1\"\r\n                }\r\n            }\r\n        },\r\n        \"links\": {\r\n            \"self\": \"https://tickets-please.test/api/v1/tickets/110\"\r\n        }\r\n    }\r\n}"
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 15|8VBul0BjhREvPy1bETaHe1WbGa8qGLi9PpyRlUpc3da45187'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/tickets/{id}'
+    metadata:
+      groupName: 'Tickets Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Show Specific Ticket'
+      description: 'Display an individual ticket.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the ticket.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"type":"ticket","id":1,"attributes":{"title":"magnam voluptatem dolorem","description":"Voluptas quasi libero sunt. Possimus sapiente necessitatibus ullam. Vitae aliquam eum libero voluptas sapiente. Necessitatibus provident quia non a earum.","status":"C","createdAt":"2024-11-18T07:20:04.000000Z","updatedAt":"2024-11-18T07:20:04.000000Z"},"relationships":{"author":{"data":{"type":"user","id":10},"links":{"self":"https:\/\/tickets-please.test\/api\/v1\/authors\/10"}}},"links":{"self":"https:\/\/tickets-please.test\/api\/v1\/tickets\/1"}}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 15|8VBul0BjhREvPy1bETaHe1WbGa8qGLi9PpyRlUpc3da45187'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/tickets/{id}'
+    metadata:
+      groupName: 'Tickets Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete Ticket'
+      description: 'Delete an existing ticket record from the storage.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the ticket.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 15|8VBul0BjhREvPy1bETaHe1WbGa8qGLi9PpyRlUpc3da45187'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/tickets/{ticket_id}'
+    metadata:
+      groupName: 'Tickets Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Replace Ticket'
+      description: 'Replace an existing ticket record with new data values in the storage.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      ticket_id:
+        name: ticket_id
+        description: 'The ID of the ticket.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      ticket_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      data:
+        name: data
+        description: ''
+        required: true
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes:
+        name: data.attributes
+        description: ''
+        required: true
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.relationships:
+        name: data.relationships
+        description: ''
+        required: true
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.relationships.author:
+        name: data.relationships.author
+        description: ''
+        required: true
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.relationships.author.data:
+        name: data.relationships.author.data
+        description: ''
+        required: true
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.title:
+        name: data.attributes.title
+        description: 'The title of the ticket.'
+        required: true
+        example: 'This is my Title 4'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.description:
+        name: data.attributes.description
+        description: 'The description of the ticket.'
+        required: true
+        example: 'This is the Create Ticket we created'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.status:
+        name: data.attributes.status
+        description: 'The status of the ticket.'
+        required: true
+        example: C
+        type: string
+        enumValues:
+          - A
+          - C
+          - H
+          - X
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.relationships.author.data.id:
+        name: data.relationships.author.data.id
+        description: 'The ID of the author of the ticket. The <code>id</code> of an existing record in the users table.'
+        required: true
+        example: 20
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      data:
+        attributes:
+          title: 'This is my Title 4'
+          description: 'This is the Create Ticket we created'
+          status: C
+        relationships:
+          author:
+            data:
+              id: 20
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 15|8VBul0BjhREvPy1bETaHe1WbGa8qGLi9PpyRlUpc3da45187'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/v1/tickets/{ticket_id}'
+    metadata:
+      groupName: 'Tickets Management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update Ticket'
+      description: 'Update an existing ticket record with new data values in the storage.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      ticket_id:
+        name: ticket_id
+        description: 'The ID of the ticket.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      ticket_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      data.attributes:
+        name: data.attributes
+        description: ''
+        required: false
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data:
+        name: data
+        description: ''
+        required: false
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.title:
+        name: data.attributes.title
+        description: 'The title of the ticket.'
+        required: false
+        example: 'This is my Title 4'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.description:
+        name: data.attributes.description
+        description: 'The description of the ticket.'
+        required: false
+        example: 'This is the Create Ticket we created'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.attributes.status:
+        name: data.attributes.status
+        description: 'The status of the ticket.'
+        required: false
+        example: H
+        type: string
+        enumValues:
+          - A
+          - C
+          - H
+          - X
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.relationships.author.data:
+        name: data.relationships.author.data
+        description: ''
+        required: false
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.relationships.author:
+        name: data.relationships.author
+        description: ''
+        required: false
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.relationships:
+        name: data.relationships
+        description: ''
+        required: false
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      data.relationships.author.data.id:
+        name: data.relationships.author.data.id
+        description: 'The ID of the author of the ticket. The <code>id</code> of an existing record in the users table.'
+        required: false
+        example: 10
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      data:
+        attributes:
+          title: 'This is my Title 4'
+          description: 'This is the Create Ticket we created'
+          status: H
+        relationships:
+          author:
+            data:
+              id: 10
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 15|8VBul0BjhREvPy1bETaHe1WbGa8qGLi9PpyRlUpc3da45187'
+    controller: null
+    method: null
+    route: null
+    custom: []

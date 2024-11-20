@@ -1,0 +1,8 @@
+
+{
+    "data": {
+        "token": "{YOUR_AUTH_KEY}"
+    },
+    "message": "Authencated",
+    "status": 200
+}

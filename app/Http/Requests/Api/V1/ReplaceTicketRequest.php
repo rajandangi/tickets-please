@@ -22,6 +22,11 @@ class ReplaceTicketRequest extends BaseTicketRequest
     public function rules(): array
     {
         $rules = [
+            'data' => 'required|array',
+            'data.attributes' => 'required|array',
+            'data.relationships' => 'required|array',
+            'data.relationships.author' => 'required|array',
+            'data.relationships.author.data' => 'required|array',
             'data.attributes.title' => 'required|string',
             'data.attributes.description' => 'required|string',
             'data.attributes.status' => 'required|string|in:A,C,H,X',
@@ -50,5 +55,38 @@ class ReplaceTicketRequest extends BaseTicketRequest
                 ])
             ]);
         }
+    }
+
+    /**
+     * Method for the documentation
+     *
+     * See @https://scribe.knuckles.wtf/laravel/documenting/query-body-parameters#examples
+     */
+    public function bodyParameters(): array
+    {
+        $documentation = [
+            'data.attributes.title' => [
+                'description' => 'The title of the ticket',
+                'example' => 'This is my Title 4'
+            ],
+            'data.attributes.description' => [
+                'description' => 'The description of the ticket',
+                'example' => 'This is the Create Ticket we created'
+            ],
+            'data.attributes.status' => [
+                'description' => 'The status of the ticket',
+            ]
+        ];
+
+        if ($this->routeIs('authors.tickets.replace')) {
+            $documentation['data.relationships.author.data.id'] = [
+                'description' => 'The ID of the author of the ticket. This comes from the URL parameter.',
+            ];
+        }else {
+            $documentation['data.relationships.author.data.id'] = [
+                'description' => 'The ID of the author of the ticket',
+            ];
+        }
+        return $documentation;
     }
 }

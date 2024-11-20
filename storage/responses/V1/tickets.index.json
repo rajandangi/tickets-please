@@ -1,0 +1,426 @@
+{
+    "data": [
+        {
+            "type": "ticket",
+            "id": 1,
+            "attributes": {
+                "title": "magnam voluptatem dolorem",
+                "status": "C",
+                "createdAt": "2024-11-18T07:20:04.000000Z",
+                "updatedAt": "2024-11-18T07:20:04.000000Z"
+            },
+            "relationships": {
+                "author": {
+                    "data": {
+                        "type": "user",
+                        "id": 10
+                    },
+                    "links": {
+                        "self": "https://tickets-please.test/api/v1/authors/10"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/tickets/1"
+            }
+        },
+        {
+            "type": "ticket",
+            "id": 2,
+            "attributes": {
+                "title": "autem inventore in",
+                "status": "H",
+                "createdAt": "2024-11-18T07:20:04.000000Z",
+                "updatedAt": "2024-11-18T07:20:04.000000Z"
+            },
+            "relationships": {
+                "author": {
+                    "data": {
+                        "type": "user",
+                        "id": 3
+                    },
+                    "links": {
+                        "self": "https://tickets-please.test/api/v1/authors/3"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/tickets/2"
+            }
+        },
+        {
+            "type": "ticket",
+            "id": 3,
+            "attributes": {
+                "title": "fugit ut neque",
+                "status": "H",
+                "createdAt": "2024-11-18T07:20:04.000000Z",
+                "updatedAt": "2024-11-18T07:20:04.000000Z"
+            },
+            "relationships": {
+                "author": {
+                    "data": {
+                        "type": "user",
+                        "id": 2
+                    },
+                    "links": {
+                        "self": "https://tickets-please.test/api/v1/authors/2"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/tickets/3"
+            }
+        },
+        {
+            "type": "ticket",
+            "id": 4,
+            "attributes": {
+                "title": "consectetur similique fugiat",
+                "status": "H",
+                "createdAt": "2024-11-18T07:20:04.000000Z",
+                "updatedAt": "2024-11-18T07:20:04.000000Z"
+            },
+            "relationships": {
+                "author": {
+                    "data": {
+                        "type": "user",
+                        "id": 10
+                    },
+                    "links": {
+                        "self": "https://tickets-please.test/api/v1/authors/10"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/tickets/4"
+            }
+        },
+        {
+            "type": "ticket",
+            "id": 5,
+            "attributes": {
+                "title": "qui sequi ad",
+                "status": "C",
+                "createdAt": "2024-11-18T07:20:04.000000Z",
+                "updatedAt": "2024-11-18T07:20:04.000000Z"
+            },
+            "relationships": {
+                "author": {
+                    "data": {
+                        "type": "user",
+                        "id": 4
+                    },
+                    "links": {
+                        "self": "https://tickets-please.test/api/v1/authors/4"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/tickets/5"
+            }
+        },
+        {
+            "type": "ticket",
+            "id": 6,
+            "attributes": {
+                "title": "necessitatibus fugiat sit",
+                "status": "X",
+                "createdAt": "2024-11-18T07:20:04.000000Z",
+                "updatedAt": "2024-11-18T07:20:04.000000Z"
+            },
+            "relationships": {
+                "author": {
+                    "data": {
+                        "type": "user",
+                        "id": 4
+                    },
+                    "links": {
+                        "self": "https://tickets-please.test/api/v1/authors/4"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/tickets/6"
+            }
+        },
+        {
+            "type": "ticket",
+            "id": 7,
+            "attributes": {
+                "title": "in sint iure",
+                "status": "A",
+                "createdAt": "2024-11-18T07:20:04.000000Z",
+                "updatedAt": "2024-11-18T07:20:04.000000Z"
+            },
+            "relationships": {
+                "author": {
+                    "data": {
+                        "type": "user",
+                        "id": 2
+                    },
+                    "links": {
+                        "self": "https://tickets-please.test/api/v1/authors/2"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/tickets/7"
+            }
+        },
+        {
+            "type": "ticket",
+            "id": 8,
+            "attributes": {
+                "title": "temporibus possimus aperiam",
+                "status": "H",
+                "createdAt": "2024-11-18T07:20:04.000000Z",
+                "updatedAt": "2024-11-18T07:20:04.000000Z"
+            },
+            "relationships": {
+                "author": {
+                    "data": {
+                        "type": "user",
+                        "id": 10
+                    },
+                    "links": {
+                        "self": "https://tickets-please.test/api/v1/authors/10"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/tickets/8"
+            }
+        },
+        {
+            "type": "ticket",
+            "id": 9,
+            "attributes": {
+                "title": "omnis atque voluptatem",
+                "status": "H",
+                "createdAt": "2024-11-18T07:20:04.000000Z",
+                "updatedAt": "2024-11-18T07:20:04.000000Z"
+            },
+            "relationships": {
+                "author": {
+                    "data": {
+                        "type": "user",
+                        "id": 8
+                    },
+                    "links": {
+                        "self": "https://tickets-please.test/api/v1/authors/8"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/tickets/9"
+            }
+        },
+        {
+            "type": "ticket",
+            "id": 10,
+            "attributes": {
+                "title": "est voluptas non",
+                "status": "A",
+                "createdAt": "2024-11-18T07:20:04.000000Z",
+                "updatedAt": "2024-11-18T07:20:04.000000Z"
+            },
+            "relationships": {
+                "author": {
+                    "data": {
+                        "type": "user",
+                        "id": 5
+                    },
+                    "links": {
+                        "self": "https://tickets-please.test/api/v1/authors/5"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/tickets/10"
+            }
+        },
+        {
+            "type": "ticket",
+            "id": 11,
+            "attributes": {
+                "title": "ipsam totam tenetur",
+                "status": "H",
+                "createdAt": "2024-11-18T07:20:04.000000Z",
+                "updatedAt": "2024-11-18T07:20:04.000000Z"
+            },
+            "relationships": {
+                "author": {
+                    "data": {
+                        "type": "user",
+                        "id": 8
+                    },
+                    "links": {
+                        "self": "https://tickets-please.test/api/v1/authors/8"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/tickets/11"
+            }
+        },
+        {
+            "type": "ticket",
+            "id": 12,
+            "attributes": {
+                "title": "aut aliquam veritatis",
+                "status": "A",
+                "createdAt": "2024-11-18T07:20:04.000000Z",
+                "updatedAt": "2024-11-18T07:20:04.000000Z"
+            },
+            "relationships": {
+                "author": {
+                    "data": {
+                        "type": "user",
+                        "id": 3
+                    },
+                    "links": {
+                        "self": "https://tickets-please.test/api/v1/authors/3"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/tickets/12"
+            }
+        },
+        {
+            "type": "ticket",
+            "id": 13,
+            "attributes": {
+                "title": "id quia ipsam",
+                "status": "C",
+                "createdAt": "2024-11-18T07:20:04.000000Z",
+                "updatedAt": "2024-11-18T07:20:04.000000Z"
+            },
+            "relationships": {
+                "author": {
+                    "data": {
+                        "type": "user",
+                        "id": 5
+                    },
+                    "links": {
+                        "self": "https://tickets-please.test/api/v1/authors/5"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/tickets/13"
+            }
+        },
+        {
+            "type": "ticket",
+            "id": 14,
+            "attributes": {
+                "title": "sunt dolorum amet",
+                "status": "X",
+                "createdAt": "2024-11-18T07:20:04.000000Z",
+                "updatedAt": "2024-11-18T07:20:04.000000Z"
+            },
+            "relationships": {
+                "author": {
+                    "data": {
+                        "type": "user",
+                        "id": 7
+                    },
+                    "links": {
+                        "self": "https://tickets-please.test/api/v1/authors/7"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/tickets/14"
+            }
+        },
+        {
+            "type": "ticket",
+            "id": 15,
+            "attributes": {
+                "title": "ea quisquam molestiae",
+                "status": "C",
+                "createdAt": "2024-11-18T07:20:04.000000Z",
+                "updatedAt": "2024-11-18T07:20:04.000000Z"
+            },
+            "relationships": {
+                "author": {
+                    "data": {
+                        "type": "user",
+                        "id": 5
+                    },
+                    "links": {
+                        "self": "https://tickets-please.test/api/v1/authors/5"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://tickets-please.test/api/v1/tickets/15"
+            }
+        }
+    ],
+    "links": {
+        "first": "https://tickets-please.test/api/v1/tickets?page=1",
+        "last": "https://tickets-please.test/api/v1/tickets?page=7",
+        "prev": null,
+        "next": "https://tickets-please.test/api/v1/tickets?page=2"
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 7,
+        "links": [
+            {
+                "url": null,
+                "label": "&laquo; Previous",
+                "active": false
+            },
+            {
+                "url": "https://tickets-please.test/api/v1/tickets?page=1",
+                "label": "1",
+                "active": true
+            },
+            {
+                "url": "https://tickets-please.test/api/v1/tickets?page=2",
+                "label": "2",
+                "active": false
+            },
+            {
+                "url": "https://tickets-please.test/api/v1/tickets?page=3",
+                "label": "3",
+                "active": false
+            },
+            {
+                "url": "https://tickets-please.test/api/v1/tickets?page=4",
+                "label": "4",
+                "active": false
+            },
+            {
+                "url": "https://tickets-please.test/api/v1/tickets?page=5",
+                "label": "5",
+                "active": false
+            },
+            {
+                "url": "https://tickets-please.test/api/v1/tickets?page=6",
+                "label": "6",
+                "active": false
+            },
+            {
+                "url": "https://tickets-please.test/api/v1/tickets?page=7",
+                "label": "7",
+                "active": false
+            },
+            {
+                "url": "https://tickets-please.test/api/v1/tickets?page=2",
+                "label": "Next &raquo;",
+                "active": false
+            }
+        ],
+        "path": "https://tickets-please.test/api/v1/tickets",
+        "per_page": 15,
+        "to": 15,
+        "total": 100
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "data": {
+        "type": "user",
+        "id": 1,
+        "attributes": {
+            "name": "Rajan Dangi",
+            "email": "rajandangi@example.com",
+            "isManager": true
+        },
+        "links": {
+            "self": "https://tickets-please.test/api/v1/authors/1"
+        }
+    }
+}

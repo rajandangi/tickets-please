@@ -4,6 +4,8 @@ namespace App\Http\Requests\Api\V1;
 
 use App\Models\User;
 use App\Permissions\V1\Abilities;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\HasApiTokens;
 
 class StoreTicketRequest extends BaseTicketRequest
 {
@@ -25,15 +27,19 @@ class StoreTicketRequest extends BaseTicketRequest
         $authorIdAttr = 'data.relationships.author.data.id';
         $authorRule = 'required|integer|exists:users,id';
 
-        $user = $this->user();
+        $user = Auth::user();
 
         $rules = [
+            'data' => 'required|array',
+            'data.attributes' => 'required|array',
+            'data.relationships' => 'required|array',
+            'data.relationships.author' => 'required|array',
+            'data.relationships.author.data' => 'required|array',
             'data.attributes.title' => 'required|string',
             'data.attributes.description' => 'required|string',
             'data.attributes.status' => 'required|string|in:A,C,H,X',
             $authorIdAttr => $authorRule . '|size:' . $user->id
         ];
-
 
         if ($user->tokenCan(Abilities::CreateTicket)) {
             $rules[$authorIdAttr] = $authorRule;
@@ -61,5 +67,40 @@ class StoreTicketRequest extends BaseTicketRequest
                 ])
             ]);
         }
+    }
+
+    /**
+     * This method is used to document the request parameters for the API documentation.
+     * See @https://scribe.knuckles.wtf/laravel/documenting/query-body-parameters#examples
+     */
+    public function bodyParameters() {
+        $documentation = [
+            'data.attributes.title' => [
+                'description' => "The ticket's title (method)",
+                'example' => 'No-example'
+            ],
+            'data.attributes.description' => [
+                'description' => "The ticket's description",
+                'example' => 'No-example',
+            ],
+            'data.attributes.status' => [
+                'description' => "The ticket's status",
+            ],
+        ];
+
+        if ($this->routeIs('tickets.store')) {
+            $documentation['data.relationships.author.data.id'] = [
+                'description' => 'The author assigned to the ticket.',
+                'example' => 'No-example'
+            ];
+        } else {
+            $documentation['data.relationships.author.data.id'] = [
+                'description' => 'The author assigned to the ticket. Comes from the route parameter.',
+                'example' => 'No-example'
+            ];
+        }
+
+        return $documentation;
+
     }
 }

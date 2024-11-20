@@ -1,5 +1,5 @@
 ## Tickets Please
-Welcome to Tickets Please! This is a simple ticketing system API built with Laravel, designed to help you master best practices in API development. It comes packed with features like user management, ticket authorization, error handling, and comprehensive API documentation.
+Welcome to Tickets Please! This is a simple ticketing system API built with Laravel, designed to master best practices in API development. It comes packed with features like user management, ticket authorization, error handling, and comprehensive API documentation.
 
 ## Best Practices Implemented
 - API URL Design
